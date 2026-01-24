@@ -1,16 +1,53 @@
-# React + Vite
+# 💸 Expensify — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **expense tracking web application** built with **React + Vite**, focused on clean UX, real-world authentication, and data visualization.
 
-Currently, two official plugins are available:
+This frontend consumes a secure REST API and allows users to track, analyze, and manage their expenses seamlessly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 JWT-based Authentication (Login & Register)
+- 🧾 Add, edit, delete expenses
+- 📊 Expense analytics & summaries
+- 📅 Filter by time period
+- 🔒 Protected routes
+- 🔔 Toast notifications
+- 📱 Fully responsive UI
+- 🎨 Clean, minimal design
 
-## Expanding the ESLint configuration
+---
+##  Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<p align="center">
+  <img src="assets/landing.png" width="600"/>
+</p>
+
+<p align="center">
+  <img src="assets/login.png" width="600"/>
+</p>
+
+<p align="center">
+  <img src="assets/tracker.png" width="600"/>
+</p>
+
+---
+## 🛠 Tech Stack
+
+- React (Vite)
+- React Router DOM
+- Axios
+- Tailwind CSS
+- JWT Authentication
+
+---
+
+Running Locally
+npm install
+npm run dev
+
+
+App runs on:
+http://localhost:5174
+
