@@ -1,0 +1,943 @@
+/* penny UX layer.
+   Every class here starts with `ex-` so it never collides with the older
+   setup-* and dashboard-* rules in index.css. */
+
+   /* :root {
+    --ex-paper: #f7f3ea;
+    --ex-white: #fffdf8;
+    --ex-ink: #111111;
+    --ex-muted: #5d5a52;
+    --ex-lime: #c8f135;
+    --ex-coral: #ff775f;
+    --ex-line: 3px solid var(--ex-ink);
+    --ex-display: "Space Grotesk", system-ui, sans-serif;
+    --ex-mono: "DM Mono", ui-monospace, monospace;
+    --ex-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  } */
+
+
+:root {
+  /* Penny — Dark Premium */
+  --ex-paper: #101110;
+  --ex-white: #1A1C19;
+  --ex-ink: #F5F5F0;
+  --ex-muted: #A2A69D;
+  --ex-lime: #C6F36B;
+  --ex-coral: #FF7770;
+
+  /* Softer borders for dark mode */
+  --ex-line: 1px solid #30332D;
+
+  --ex-display: "Space Grotesk", system-ui, sans-serif;
+  --ex-mono: "DM Mono", ui-monospace, monospace;
+  --ex-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+  
+  /* ---------- Page and shared type ---------- */
+  
+  .ex-page,
+  .ex-auth {
+    min-height: 100vh;
+    background: var(--ex-paper);
+    color: var(--ex-ink);
+    font-family: var(--ex-display);
+  }
+  
+  .ex-main {
+    width: min(1040px, 100%);
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 48px) 96px;
+  }
+  
+  .ex-kicker {
+    margin: 0 0 12px;
+    font-family: var(--ex-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ex-muted);
+  }
+  
+  .ex-muted {
+    color: var(--ex-muted);
+    font-size: 17px;
+  }
+  
+  .ex-error {
+    margin: 8px 0 0;
+    padding: 10px 12px;
+    border: var(--ex-line);
+    background: var(--ex-coral);
+    font-weight: 600;
+  }
+  
+  .ex-brand {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ex-ink);
+    text-decoration: none;
+  }
+  
+  .ex-brand span {
+    color: var(--ex-coral);
+  }
+  
+  /* ---------- Buttons ---------- */
+  
+  .ex-primary,
+  .ex-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 22px;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    border: var(--ex-line);
+    cursor: pointer;
+    transition: transform 150ms var(--ex-ease), box-shadow 150ms var(--ex-ease);
+  }
+  
+  .ex-primary {
+    background: var(--ex-lime);
+    color: #101110;
+    box-shadow: 5px 5px 0 var(--ex-ink);
+  }
+  
+  .ex-primary:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--ex-ink);
+  }
+  
+  .ex-primary:active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ex-ink);
+  }
+  
+  .ex-primary:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  
+  .ex-primary-sm,
+  .ex-ghost-sm {
+    padding: 9px 14px;
+    font-size: 15px;
+  }
+  
+  .ex-ghost {
+    background: transparent;
+    color: var(--ex-ink);
+  }
+  
+  .ex-ghost:hover {
+    background: var(--ex-ink);
+    color: var(--ex-paper);
+  }
+  
+  .ex-block {
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .ex-text-btn {
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ex-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+  
+  .ex-text-btn:hover {
+    color: var(--ex-coral);
+  }
+  
+  .ex-icon-btn {
+    width: 40px;
+    height: 40px;
+    border: var(--ex-line);
+    background: var(--ex-white);
+    font: inherit;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  
+  .ex-icon-btn:hover {
+    background: var(--ex-coral);
+  }
+  
+  .ex-primary:focus-visible,
+  .ex-ghost:focus-visible,
+  .ex-text-btn:focus-visible,
+  .ex-icon-btn:focus-visible,
+  .ex-tabs button:focus-visible,
+  .ex-chip-group button:focus-visible,
+  .ex-nav a:focus-visible,
+  .ex-link:focus-visible,
+  .ex-field input:focus-visible {
+    outline: 3px solid var(--ex-coral);
+    outline-offset: 3px;
+  }
+  
+  /* ---------- Top bar ---------- */
+  
+  .ex-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px clamp(16px, 4vw, 48px);
+    background: var(--ex-paper);
+    border-bottom: var(--ex-line);
+  }
+  
+  .ex-nav {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .ex-nav a {
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ex-muted);
+    text-decoration: none;
+  }
+  
+  .ex-nav a:hover {
+    color: var(--ex-ink);
+  }
+  
+  .ex-nav a.is-active {
+    color: var(--ex-ink);
+    box-shadow: inset 0 -3px 0 var(--ex-coral);
+  }
+  
+  .ex-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* ---------- Sections (no boxes; separated by rules and space) ---------- */
+  
+  .ex-section {
+    padding: 64px 0;
+    border-top: var(--ex-line);
+    scroll-margin-top: 84px;
+  }
+  
+  .ex-hero {
+    border-top: 0;
+    padding-top: 56px;
+  }
+  
+  .ex-hero h1 {
+    margin: 0;
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+  
+  .ex-lede {
+    max-width: 520px;
+    margin: 18px 0 0;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.35;
+    color: var(--ex-muted);
+  }
+  
+  .ex-figure-block {
+    margin-top: 48px;
+  }
+  
+  .ex-figure-label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--ex-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ex-muted);
+  }
+  
+  .ex-figure {
+    display: inline-block;
+    font-size: clamp(56px, 11vw, 132px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    /* A hand-marked highlight behind the number, not a gradient card. */
+    background: linear-gradient(transparent 64%, var(--ex-lime) 64%, var(--ex-lime) 92%, transparent 92%);
+    padding: 0 4px;
+  }
+  
+  /* ---------- Budget ---------- */
+  
+  .ex-budget {
+    margin-top: 28px;
+    max-width: 560px;
+  }
+  
+  .ex-budget-bar {
+    height: 18px;
+    border: var(--ex-line);
+    background: var(--ex-white);
+  }
+  
+  .ex-budget-bar span {
+    display: block;
+    height: 100%;
+    background: var(--ex-ink);
+    transition: width 700ms var(--ex-ease);
+  }
+  
+  .ex-budget-bar span.is-over {
+    background: var(--ex-coral);
+  }
+  
+  .ex-budget-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family: var(--ex-mono);
+    font-size: 14px;
+  }
+  
+  /* ---------- Stats (plain figures, no cards) ---------- */
+  
+  .ex-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 620px;
+    margin: 40px 0 0;
+  }
+  
+  .ex-stats dt {
+    font-family: var(--ex-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ex-muted);
+  }
+  
+  .ex-stats dd {
+    margin: 6px 0 0;
+    font-size: clamp(20px, 2.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+  }
+  
+  /* ---------- Section headings ---------- */
+  
+  .ex-section-head {
+    margin-bottom: 32px;
+  }
+  
+  .ex-section-head h2 {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 44px);
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+  
+  .ex-section-head-split {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  /* ---------- Pie chart ---------- */
+  
+  .ex-pie {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+  }
+  
+  .ex-pie-svg {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+  
+  .ex-legend {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .ex-legend li {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr) 56px 110px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 2px solid var(--ex-ink);
+    font-size: 17px;
+  }
+  
+  .ex-legend li:first-child {
+    border-top: 2px solid var(--ex-ink);
+  }
+  
+  .ex-swatch {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--ex-ink);
+  }
+  
+  .ex-legend-share {
+    font-family: var(--ex-mono);
+    text-align: right;
+  }
+  
+  .ex-legend-amount {
+    font-weight: 700;
+    text-align: right;
+  }
+  
+  /* ---------- Trend chart wrapper ---------- */
+  
+  #trend .spending-chart {
+    max-width: 100%;
+  }
+  
+  /* ---------- Activity tabs and list ---------- */
+  
+  .ex-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .ex-tabs button {
+    padding: 8px 12px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ex-muted);
+    cursor: pointer;
+  }
+  
+  .ex-tabs button.is-active {
+    color: var(--ex-ink);
+    box-shadow: inset 0 -3px 0 var(--ex-coral);
+  }
+  
+  .ex-list {
+    border-top: 2px solid var(--ex-ink);
+  }
+  
+  .ex-row {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 8px;
+    margin: 0 -8px;
+    border-bottom: 2px solid var(--ex-ink);
+    transition: background-color 150ms ease;
+  }
+  
+  .ex-row:hover {
+    background: rgba(200, 241, 53, 0.25);
+  }
+  
+  .ex-row-chip {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: var(--ex-line);
+    font-weight: 700;
+  }
+  
+  .ex-row-main {
+    min-width: 0;
+  }
+  
+  .ex-row-title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .ex-row-meta {
+    margin: 2px 0 0;
+    font-family: var(--ex-mono);
+    font-size: 13px;
+    color: var(--ex-muted);
+  }
+  
+  .ex-row-amount {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  /* ---------- Empty states ---------- */
+  
+  .ex-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 0;
+  }
+  
+  .ex-empty p {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .ex-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 32px;
+    border-top: var(--ex-line);
+    font-family: var(--ex-mono);
+    font-size: 13px;
+    color: var(--ex-muted);
+  }
+  
+  /* ---------- Toast ---------- */
+  
+  .ex-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    z-index: 40;
+    padding: 12px 18px;
+    background: var(--ex-ink);
+    color: var(--ex-paper);
+    font-weight: 600;
+    animation: ex-rise 220ms var(--ex-ease);
+  }
+  
+  /* ---------- Modal ---------- */
+  
+  /* .ex-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: rgba(17, 17, 17, 0.55);
+  }
+   */
+   .ex-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+  }
+  
+  /* .ex-modal {
+    width: min(520px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    background: var(--ex-white);
+    border: var(--ex-line);
+    box-shadow: 10px 10px 0 var(--ex-ink);
+    animation: ex-pop 200ms var(--ex-ease);
+  } */
+
+  .ex-modal {
+  width: min(100%, 560px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  background: #292B27;
+  color: #F5F5F0;
+  border: 2px solid #55584F;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #C6F36B;
+}
+  
+  .ex-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .ex-modal-head h2 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+  }
+  
+  .ex-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  
+  /* ---------- Forms (shared by auth and modal) ---------- */
+  
+  .ex-form {
+    display: grid;
+    gap: 18px;
+  }
+  
+  .ex-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .ex-field {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+  .ex-field > span,
+  .ex-field legend {
+    padding: 0;
+    font-family: var(--ex-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  
+  .ex-field input {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 18px;
+    color: var(--ex-ink);
+    background: var(--ex-white);
+    border: var(--ex-line);
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+  
+  .ex-field input::placeholder {
+    color: #9a968b;
+  }
+  
+  .ex-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .ex-chip-group button {
+    padding: 8px 12px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--ex-white);
+    color: var(--ex-ink);
+    border: 2px solid var(--ex-ink);
+    cursor: pointer;
+  }
+  
+  .ex-chip-group button.is-picked {
+    background: var(--ex-ink);
+    color: var(--ex-paper);
+  }
+  
+  /* ---------- Auth pages ---------- */
+  
+  .ex-auth-top {
+    padding: 24px clamp(16px, 4vw, 48px);
+  }
+  
+  .ex-auth-main {
+    display: grid;
+    place-items: start center;
+    padding: 24px 16px 96px;
+  }
+  
+  .ex-auth-card {
+    width: min(440px, 100%);
+  }
+  
+  .ex-auth h1 {
+    margin: 0;
+    font-size: clamp(34px, 4.2vw, 50px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+  
+  .ex-auth h1 em {
+    display: block;
+    font-style: normal;
+    color: var(--ex-muted);
+  }
+  /* Sign-in title: same big two-line heading as the setup screens. */
+.ex-auth .setup-title-block h1 {
+    font-size: clamp(44px, 5.6vw, 70px);
+    line-height: .86;
+    letter-spacing: -.07em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .ex-auth .setup-title-block h1 em {
+    color: var(--ex-muted);
+    white-space: nowrap;
+  }
+  .ex-auth .ex-form {
+    margin-top: 32px;
+  }
+  
+  /* Only the action is a link: no underline or divider on the question. */
+  .ex-aside {
+    margin: 28px 0 0;
+    font-size: 17px;
+    color: var(--ex-muted);
+    text-decoration: none;
+  }
+  
+  .ex-link {
+    color: var(--ex-ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  
+  .ex-link:hover {
+    color: var(--ex-coral);
+  }
+  
+  /* ---------- Motion ---------- */
+  
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 600ms var(--ex-ease), transform 600ms var(--ex-ease);
+  }
+  
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+  
+  @keyframes ex-rise {
+    from { opacity: 0; transform: translate(-50%, 8px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  
+  @keyframes ex-pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  /* ---------- Mobile ---------- */
+  
+  @media (max-width: 760px) {
+    .ex-topbar {
+      flex-wrap: wrap;
+      row-gap: 10px;
+    }
+  
+    .ex-nav {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+  
+    .ex-nav a {
+      white-space: nowrap;
+    }
+  
+    .ex-section {
+      padding: 48px 0;
+    }
+  
+    .ex-stats {
+      gap: 16px;
+    }
+  
+    .ex-pie {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  
+    .ex-pie-svg {
+      max-width: 240px;
+      margin: 0 auto;
+    }
+  
+    .ex-legend li {
+      grid-template-columns: 16px minmax(0, 1fr) 48px;
+    }
+  
+    .ex-legend-amount {
+      grid-column: 2 / -1;
+      text-align: left;
+      font-size: 15px;
+      color: var(--ex-muted);
+    }
+  
+    .ex-form-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .ex-row {
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+    }
+  
+    .ex-row .ex-text-btn {
+      grid-column: 2 / -1;
+      justify-self: start;
+    }
+  }
+
+  
+.profile-menu {
+  position: relative;
+}
+
+button.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.profile-chevron {
+  margin-left: 4px;
+  opacity: 0.65;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 290px;
+  padding: 8px;
+  border: 1px solid var(--ex-line);
+  border-radius: 14px;
+  background: var(--ex-white);
+  color: var(--ex-ink);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+}
+
+.profile-dropdown-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+}
+
+.profile-dropdown small {
+  color: var(--ex-muted);
+  font-size: 12px;
+}
+
+.profile-dropdown > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.profile-dropdown > button:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.profile-dropdown > button > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-dropdown-divider {
+  height: 1px;
+  margin: 6px 4px;
+  background: #30332D;
+}
+
+.profile-dropdown > button.signout-option {
+  color: #c65345;
+}
+
+/* AI Parse button: black text on lime background */
+.ex-modal .ex-ai-button {
+    color: #111110 !important;
+  }
+  
+  .ex-modal .ex-ai-button span {
+    color: #111110 !important;
+  }
+
+  .ex-modal .ex-field input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+
+
+ 

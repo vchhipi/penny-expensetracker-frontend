@@ -1,0 +1,274 @@
+/* Settings page: sidebar on the left, the chosen section on the right. */
+.st-page {
+    min-height: 100vh;
+    background: var(--ex-paper);
+    color: var(--ex-ink);
+    font-family: var(--ex-display);
+  }
+  .st-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px clamp(20px, 5vw, 64px);
+    border-bottom: 1px solid #30332d;
+  }
+  .st-brand {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    color: inherit;
+    text-decoration: none;
+  }
+  .st-brand span { color: var(--ex-coral); }
+  .st-back {
+    color: var(--ex-muted);
+    font: 500 13px var(--ex-mono);
+    text-decoration: none;
+  }
+  .st-back:hover { color: var(--ex-ink); }
+  
+  .st-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 40px;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 40px clamp(20px, 5vw, 64px) 80px;
+  }
+  .st-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .st-side-title {
+    margin: 0 0 8px;
+    font: 500 11px var(--ex-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ex-muted);
+  }
+  .st-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    background: transparent;
+    color: var(--ex-ink);
+    border: 1.5px solid #30332d;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .st-nav small {
+    color: var(--ex-muted);
+    font-size: 12px;
+  }
+  .st-nav.is-active {
+    border-color: var(--ex-lime);
+    background: color-mix(in srgb, var(--ex-lime) 10%, transparent);
+  }
+  .st-signout {
+    margin-top: 16px;
+    color: var(--ex-coral);
+    border-color: var(--ex-coral);
+  }
+  
+  .st-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+  }
+  .st-card {
+    padding: 24px;
+    background: var(--ex-white);
+    border: 2px solid var(--ex-ink);
+    box-shadow: 6px 6px 0 #30332d;
+  }
+  .st-card h2 {
+    margin: 0 0 18px;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+  }
+  .st-card h3 {
+    margin: 20px 0 12px;
+    font-size: 16px;
+  }
+  .st-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .st-field > span {
+    font: 500 11px var(--ex-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ex-muted);
+  }
+  .st-card input,
+  .st-card select {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--ex-paper);
+    color: var(--ex-ink);
+    border: 1.5px solid #30332d;
+    border-radius: 4px;
+    font: 500 15px var(--ex-display);
+  }
+  .st-card input:focus,
+  .st-card select:focus {
+    outline: none;
+    border-color: var(--ex-lime);
+  }
+  .st-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .st-row input { flex: 1; min-width: 180px; }
+  .st-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+  
+  .st-btn {
+    padding: 12px 18px;
+    background: var(--ex-lime);
+    color: #101110;
+    border: 2px solid var(--ex-lime);
+    border-radius: 3px;
+    font: 600 13px var(--ex-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #30332d;
+  }
+  .st-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #30332d; }
+  .st-btn-ghost {
+    background: transparent;
+    color: var(--ex-ink);
+    border-color: var(--ex-ink);
+    box-shadow: none;
+  }
+  .st-btn-ghost:hover { transform: none; background: var(--ex-ink); color: var(--ex-paper); }
+  
+  .st-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .st-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1.5px solid var(--ex-ink);
+    border-radius: 999px;
+    font: 500 13px var(--ex-mono);
+  }
+  .st-chip button {
+    background: none;
+    border: 0;
+    color: var(--ex-coral);
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .st-subs {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+  }
+  .st-subs li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #30332d;
+    flex-wrap: wrap;
+  }
+  .st-subs li.is-paused { opacity: 0.6; }
+  .st-subs strong {
+    display: block;
+    font-size: 15px;
+  }
+  .st-subs small {
+    color: var(--ex-muted);
+    font: 500 12px var(--ex-mono);
+  }
+  .st-sub-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .st-sub-actions button {
+    padding: 6px 10px;
+    background: transparent;
+    color: var(--ex-ink);
+    border: 1.5px solid var(--ex-ink);
+    border-radius: 3px;
+    font: 500 12px var(--ex-mono);
+    cursor: pointer;
+  }
+  .st-sub-actions button:hover {
+    background: var(--ex-ink);
+    color: var(--ex-paper);
+  }
+  
+  .st-muted { color: var(--ex-muted); }
+  .st-message {
+    margin: 0;
+    color: var(--ex-lime);
+    font: 500 14px var(--ex-mono);
+  }
+  .st-error {
+    margin: 0;
+    color: var(--ex-coral);
+    font: 500 14px var(--ex-mono);
+  }
+  
+  @media (max-width: 760px) {
+    .st-layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .st-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .st-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 240px;
+    max-width: 360px;
+    padding: 12px 14px;
+    background: var(--ex-white);
+    border: 2px solid;
+    box-shadow: 4px 4px 0 #30332d;
+    font: 500 14px var(--ex-mono);
+  }
+  .st-toast-ok { border-color: var(--ex-lime); color: var(--ex-lime); }
+  .st-toast-error { border-color: var(--ex-coral); color: var(--ex-coral); }
+  .st-toast span { flex: 1; }
+  .st-toast button {
+    background: none;
+    border: 0;
+    color: inherit;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  @media (max-width: 760px) {
+    .st-toast { left: 16px; right: 16px; max-width: none; }
+  }

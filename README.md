@@ -1,4 +1,4 @@
-# 💸 Expensify — Frontend
+# 💸 penny — Frontend
 
 A modern, responsive **expense tracking web application** built with **React + Vite**, focused on clean UX, real-world authentication, and data visualization.
 
